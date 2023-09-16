@@ -130,8 +130,8 @@ class _EventCalendarState extends State<EventCalendar> {
                           setState(() {});
                         },
                         onMonthChanged: (int selectedMonth) {
-                          widget.onMonthChanged?.call(EventCalendar.dateTime!);
                           CalendarUtils.goToMonth(selectedMonth);
+                          widget.onMonthChanged?.call(EventCalendar.dateTime!);
                           setState(() {});
                         },
                         onViewTypeChanged: (ViewType viewType) {
@@ -139,8 +139,8 @@ class _EventCalendarState extends State<EventCalendar> {
                           widget.onChangeViewType?.call(viewType);
                         },
                         onYearChanged: (int selectedYear) {
-                          widget.onYearChanged?.call(EventCalendar.dateTime!);
                           CalendarUtils.goToYear(selectedYear);
+                          widget.onYearChanged?.call(EventCalendar.dateTime!);
                           setState(() {});
                         },
                       ),
