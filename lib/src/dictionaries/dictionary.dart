@@ -2,12 +2,14 @@ import 'en.dart';
 import 'fa.dart';
 import 'pt.dart';
 import 'de.dart';
+import 'tr.dart';
 
 Map fullMonthNames = {
   ...Fa.fullMonthNames,
   ...En.fullMonthNames,
   ...Pt.fullMonthNames,
   ...De.fullMonthNames,
+  ...Tr.fullMonthNames,
 };
 
 Map shortMonthNames = {
@@ -15,6 +17,7 @@ Map shortMonthNames = {
   ...En.shortMonthNames,
   ...Pt.shortMonthNames,
   ...De.shortMonthNames,
+  ...Tr.shortMonthNames,
 };
 
 Map fullDayNames = {
@@ -22,6 +25,7 @@ Map fullDayNames = {
   ...En.fullDayNames,
   ...Pt.fullDayNames,
   ...De.fullDayNames,
+  ...Tr.fullDayNames,
 };
 
 Map shortDayNames = {
@@ -29,6 +33,7 @@ Map shortDayNames = {
   ...En.shortDayNames,
   ...Pt.shortDayNames,
   ...De.shortDayNames,
+  ...Tr.shortDayNames,
 };
 
 Map titles = {
@@ -36,6 +41,7 @@ Map titles = {
   ...En.titles,
   ...Pt.titles,
   ...De.titles,
+  ...Tr.titles,
 };
 
 Map directionIsRTL = {
@@ -43,4 +49,5 @@ Map directionIsRTL = {
   ...En.directionIsRTL,
   ...Pt.directionIsRTL,
   ...De.directionIsRTL,
+  ...Tr.directionIsRTL,
 };
