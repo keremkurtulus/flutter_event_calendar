@@ -45,27 +45,27 @@ class EventCalendar extends StatefulWidget {
 
   bool showEvents;
 
-  EventCalendar({
-    GlobalKey? key,
-    List<Event>? events,
-    CalendarDateTime? dateTime,
-    this.middleWidget,
-    this.calendarOptions,
-    this.dayOptions,
-    this.eventOptions,
-    this.headerOptions,
-    this.showLoadingForEvent = false,
-    this.specialDays = const [],
-    this.onChangeDateTime,
-    this.onMonthChanged,
-    this.onDateTimeReset,
-    this.onInit,
-    this.onYearChanged,
-    this.onChangeViewType,
-    required calendarType,
-    calendarLanguage,
-    this.showEvents = true
-  }) : super(key: key) {
+  EventCalendar(
+      {GlobalKey? key,
+      List<Event>? events,
+      CalendarDateTime? dateTime,
+      this.middleWidget,
+      this.calendarOptions,
+      this.dayOptions,
+      this.eventOptions,
+      this.headerOptions,
+      this.showLoadingForEvent = false,
+      this.specialDays = const [],
+      this.onChangeDateTime,
+      this.onMonthChanged,
+      this.onDateTimeReset,
+      this.onInit,
+      this.onYearChanged,
+      this.onChangeViewType,
+      required calendarType,
+      calendarLanguage,
+      this.showEvents = true})
+      : super(key: key) {
     calendarOptions ??= CalendarOptions();
     headerOptions ??= HeaderOptions();
     eventOptions ??= EventOptions();
@@ -75,7 +75,8 @@ class EventCalendar extends StatefulWidget {
 
     EventCalendar.calendarProvider = createInstance(calendarType);
 
-    if (key?.currentContext == null || calendarType != EventCalendar.calendarType) {
+    if (key?.currentContext == null ||
+        calendarType != EventCalendar.calendarType) {
       EventCalendar.dateTime = dateTime ?? calendarProvider.getDateTime();
     }
     EventCalendar.calendarType = calendarType ?? CalendarType.GREGORIAN;
@@ -110,42 +111,39 @@ class _EventCalendarState extends State<EventCalendar> {
   Widget build(BuildContext context) {
     return buildScopeModels(
       child: (context) {
-        return SingleChildScrollView(
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: Column(
-
-             mainAxisSize: MainAxisSize.max,
-              children: [
-                Card(
-                  color: CalendarOptions.of(context).headerMonthBackColor,
-                  shadowColor: CalendarOptions.of(context).headerMonthShadowColor,
-                  shape: CalendarOptions.of(context).headerMonthShape,
-                  elevation: CalendarOptions.of(context).headerMonthElevation,
-                  child: Column(
-                    children: [
-                      Header(
-                        onDateTimeReset: () {
-                          widget.onDateTimeReset?.call(EventCalendar.dateTime!);
-                          setState(() {});
-                        },
-                        onMonthChanged: (int selectedMonth) {
-                          CalendarUtils.goToMonth(selectedMonth);
-                          widget.onMonthChanged?.call(EventCalendar.dateTime!);
-                          setState(() {});
-                        },
-                        onViewTypeChanged: (ViewType viewType) {
-                          setState(() {});
-                          widget.onChangeViewType?.call(viewType);
-                        },
-                        onYearChanged: (int selectedYear) {
-                          CalendarUtils.goToYear(selectedYear);
-                          widget.onYearChanged?.call(EventCalendar.dateTime!);
-                          setState(() {});
-                        },
-                      ),
-                      isMonthlyView()
-                          ? SingleChildScrollView(
+        return Container(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Card(
+                color: CalendarOptions.of(context).headerMonthBackColor,
+                shadowColor: CalendarOptions.of(context).headerMonthShadowColor,
+                shape: CalendarOptions.of(context).headerMonthShape,
+                elevation: CalendarOptions.of(context).headerMonthElevation,
+                child: Column(
+                  children: [
+                    Header(
+                      onDateTimeReset: () {
+                        widget.onDateTimeReset?.call(EventCalendar.dateTime!);
+                        setState(() {});
+                      },
+                      onMonthChanged: (int selectedMonth) {
+                        CalendarUtils.goToMonth(selectedMonth);
+                        widget.onMonthChanged?.call(EventCalendar.dateTime!);
+                        setState(() {});
+                      },
+                      onViewTypeChanged: (ViewType viewType) {
+                        setState(() {});
+                        widget.onChangeViewType?.call(viewType);
+                      },
+                      onYearChanged: (int selectedYear) {
+                        CalendarUtils.goToYear(selectedYear);
+                        widget.onYearChanged?.call(EventCalendar.dateTime!);
+                        setState(() {});
+                      },
+                    ),
+                    isMonthlyView()
+                        ? SingleChildScrollView(
                             child: CalendarMonthly(
                                 specialDays: widget.specialDays,
                                 onCalendarChanged: () {
@@ -155,24 +153,23 @@ class _EventCalendarState extends State<EventCalendar> {
                                   setState(() {});
                                 }),
                           )
-                          : CalendarDaily(
-                              specialDays: widget.specialDays,
-                              onCalendarChanged: () {
-                                widget.onChangeDateTime
-                                    ?.call(EventCalendar.dateTime!);
-                                setState(() {});
-                              }),
-                    ],
-                  ),
+                        : CalendarDaily(
+                            specialDays: widget.specialDays,
+                            onCalendarChanged: () {
+                              widget.onChangeDateTime
+                                  ?.call(EventCalendar.dateTime!);
+                              setState(() {});
+                            }),
+                  ],
                 ),
-                if (widget.middleWidget != null)
-                  widget.middleWidget!.call(EventCalendar.dateTime!)!,
-                Events(onEventsChanged: () {
-                  widget.onChangeDateTime?.call(EventCalendar.dateTime!);
-                  setState(() {});
-                }),
-              ],
-            ),
+              ),
+              if (widget.middleWidget != null)
+                widget.middleWidget!.call(EventCalendar.dateTime!)!,
+              Events(onEventsChanged: () {
+                widget.onChangeDateTime?.call(EventCalendar.dateTime!);
+                setState(() {});
+              }),
+            ],
           ),
         );
       },
