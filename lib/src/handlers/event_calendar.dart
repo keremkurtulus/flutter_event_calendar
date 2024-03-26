@@ -112,7 +112,6 @@ class _EventCalendarState extends State<EventCalendar> {
       child: (context) {
         return SingleChildScrollView(
           child: Container(
-            height: MediaQuery.of(context).size.height,
             child: Column(
 
              mainAxisSize: MainAxisSize.max,
